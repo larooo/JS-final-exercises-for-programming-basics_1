@@ -106,3 +106,39 @@ console.log("4", makeMonies([19, 24, 18, 12, 15, 30]));
 // ```js
 // largestSum([6, 4, -8, 7]) // returns 10 b/c the [6, 4] summed is the largest
 // largestSum([6, 4, -8, 7, 5]) // returns 14 b/c adding all the elements produces the largest sum
+const largestSum = arr => {
+  let sumArr1 = [];
+  let sumArr2 = [];
+  for (let i = 0; i < arr.length; i++) {
+    sumArr1[i] = arr.slice(i, arr.length).reduce((a, b) => a + b, 0);
+  }
+  let max1 = Math.max(...sumArr1);
+  for (let j = 1; j <= arr.length; j++) {
+    sumArr2[j] = arr.slice(0, j).reduce((a, b) => a + b, 0);
+  }
+  sumArr2 = sumArr2.slice(1, sumArr2.length);
+  let max2 = Math.max(...sumArr2);
+  if (max2 > max1) {
+    for (let j = 1; j <= arr.length; j++) {
+      sumArr2[j] = arr.slice(0, j).reduce((a, b) => a + b, 0);
+      if (sumArr2[j] === max2) {
+        return `returns ${max2} b/c the  [${arr.slice(
+          0,
+          j
+        )}]  summed is the largest`;
+      }
+    }
+  } else if (max1 >= max2) {
+    for (let i = 0; i < arr.length; i++) {
+      sumArr1[i] = arr.slice(i, arr.length).reduce((a, b) => a + b, 0);
+      if (sumArr1[i] === max1) {
+        return `returns ${max1} b/c the  [${arr.slice(
+          i,
+          arr.length
+        )}]  summed is the largest`;
+      }
+    }
+  }
+};
+
+console.log(largestSum([6, 4, -8, 7, 5]));
