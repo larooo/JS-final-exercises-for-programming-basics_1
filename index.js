@@ -142,3 +142,45 @@ const largestSum = arr => {
 };
 
 console.log(largestSum([6, 4, -8, 7, 5]));
+
+
+//Question 6
+//Implement the Folding Cipher. It folds the alphabet in half and uses the adjacent letter. Ie. a <=> z, b <=> y, c <=> x, m <=> n.
+const alphabet1 = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z"
+];
+
+const foldCipher = str => {
+  let newStr = "";
+  for (let i = 0; i < str.length; i++) {
+    let index = alphabet1.indexOf(str[i]);
+    newStr += alphabet1[25 - index];
+  }
+  return newStr;
+};
+console.log(foldCipher("abc"));
